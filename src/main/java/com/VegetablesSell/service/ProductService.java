@@ -1,5 +1,6 @@
 package com.VegetablesSell.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,13 @@ public class ProductService {
 		// userId));
 	}
 	
+	public BigDecimal totalPrice(Product product) {
+		BigDecimal totalprice;
+		BigDecimal price = product.getPrice();
+		int quantity = product.getQuantity();
+		totalprice = price.multiply(BigDecimal.valueOf(quantity));
+		return totalprice;
+	}
 
 	public boolean existsById(Long productId) {
 		// TODO Auto-generated method stub

@@ -38,6 +38,10 @@ public class Product {
     
     @Column(nullable = false)
     private Date dateListed;
+    
+    
+    @Column(nullable = false)
+    private BigDecimal totalPriceByQuantity;
 
     // Getters and Setters
     
@@ -96,15 +100,25 @@ public class Product {
 	public void setDateListed(Date dateListed) {
 		this.dateListed = dateListed;
 	}
+	
 
-	public Product(Long productId, String name, String type, int quantity, BigDecimal price, User seller,
-			Date dateListed) {
+	public BigDecimal getTotalPriceByQuantity() {
+		return totalPriceByQuantity;
+	}
+
+	public void setTotalPriceByQuantity(BigDecimal totalPriceByQuantity) {
+		this.totalPriceByQuantity = totalPriceByQuantity;
+	}
+	
+	public Product(Long productId, String name, String type, int quantity, BigDecimal price,
+			BigDecimal totalPriceByQuantity, User seller, Date dateListed) {
 		super();
 		this.productId = productId;
 		this.name = name;
 		this.type = type;
 		this.quantity = quantity;
 		this.price = price;
+		this.totalPriceByQuantity = totalPriceByQuantity;
 		this.seller = seller;
 		this.dateListed = dateListed;
 	}

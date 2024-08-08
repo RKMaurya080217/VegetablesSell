@@ -36,6 +36,7 @@ public class ProductController {
 			return ResponseEntity.status(403).body("Only sellers can add products.");
 		}
 
+		product.setTotalPriceByQuantity(productService.totalPrice(product));
 		product.setSeller(seller);
 		Product savedProduct = productService.saveProduct(product);
 		return ResponseEntity.ok(savedProduct);

@@ -1,7 +1,9 @@
 package com.VegetablesSell.entity;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +24,14 @@ public class Order {
 	private Product product;
 
 	private int quantity;
+	
+	@Column(nullable = false)
+    private BigDecimal priceByQuantity;
+	
+	//@Column(nullable = false)
+    //private BigDecimal totalPriceByQuantity;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "buyer_id",nullable = false)
 	private User buyer;
@@ -68,21 +77,38 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Order(Long orderId, Product product, int quantity, User buyer, Date orderDate, String status) {
+	
+	
+	public BigDecimal getPriceByQuantity() {
+		return priceByQuantity;
+	}
+	public void setPriceByQuantity(BigDecimal priceByQuantity) {
+		this.priceByQuantity = priceByQuantity;
+	}
+	
+	/*
+	 * public BigDecimal getTotalPriceByQuantity() { return totalPriceByQuantity; }
+	 * public void setTotalPriceByQuantity(BigDecimal totalPriceByQuantity) {
+	 * this.totalPriceByQuantity = totalPriceByQuantity; }
+	 */
+	
+	
+	public Order(Long orderId, Product product, int quantity, BigDecimal priceByQuantity,
+			BigDecimal totalPriceByQuantity, User buyer, Date orderDate, String status) {
 		super();
 		this.orderId = orderId;
 		this.product = product;
 		this.quantity = quantity;
+		this.priceByQuantity = priceByQuantity;
+		//this.totalPriceByQuantity = totalPriceByQuantity;
 		this.buyer = buyer;
 		this.orderDate = orderDate;
 		this.status = status;
 	}
+	
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	
 	
 }
